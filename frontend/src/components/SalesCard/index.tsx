@@ -1,10 +1,18 @@
 import NotificationButton from "../NotificationButton"
 import "./styles.css"
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css"
+import { useState } from "react"
 
 
 function SalesCard() {
+
+    const min = new Date(new Date().setDate(new Date().getDate() - 365))
+
+    const [minDate, setMinDate] = useState(min)
+    const [maxDate, setMaxDate] = useState(new Date)
+
+
     return (
         <div className="card">
             <h2 className="sales-title">Sales</h2>
@@ -12,16 +20,16 @@ function SalesCard() {
             <div>
                 <div className="form-control-container">
                     <DatePicker
-                        selected={new Date()}
-                        onChange={(date: Date) => { }}
+                        selected={minDate}
+                        onChange={(date: Date) => setMinDate(date)}
                         className="form-control"
                         dateFormat="dd/MM/yyyy"
                     />
                 </div>
                 <div className="form-control-container">
                     <DatePicker
-                        selected={new Date()}
-                        onChange={(date: Date) => { }}
+                        selected={maxDate}
+                        onChange={(date: Date) => setMaxDate(date)}
                         className="form-control"
                         dateFormat="dd/MM/yyyy"
                     />
@@ -33,12 +41,12 @@ function SalesCard() {
                     <thead>
                         <tr>
                             <th className="show992">ID</th>
-                            <th className="show576">Data</th>
-                            <th>Vendedor</th>
-                            <th className="show992">Visitas</th>
-                            <th className="show992">Vendas</th>
+                            <th className="show576">Date</th>
+                            <th>Seller</th>
+                            <th className="show992">Visits</th>
+                            <th className="show992">Sales</th>
                             <th>Total</th>
-                            <th>Notificar</th>
+                            <th>Notify</th>
                         </tr>
                     </thead>
 
